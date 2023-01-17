@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Short;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ShorterController extends Controller
@@ -58,7 +59,16 @@ class ShorterController extends Controller
      */
     public function show($id)
     {
-        //
+
+    }
+
+    public function get_all()
+    {
+        //DB::table('shorts')->where('user_id', Auth::user()->id)->get()
+        //$shorts = new Short();
+        $shorts = DB::table('shorts')->where('user_id', Auth::user()->id)->get();
+        //return $shorts;
+        return view('shorts')->with('shorts',$shorts);
     }
 
     /**

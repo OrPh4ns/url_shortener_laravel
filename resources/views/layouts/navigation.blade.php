@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('short')" :active="request()->routeIs('short')">
                         {{ __('New Shorting') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('short.show')" :active="request()->routeIs('short.show')">
+                        {{ __('My Shorts') }}
+                    </x-nav-link>
                 </div>
             </div>
 
