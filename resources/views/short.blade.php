@@ -26,9 +26,9 @@
                             <p class="accent-green-600">
                                 {{ session('success') }}
                             </p>
-                            <a href="http://url/{{ session('shorted_url') }}" class="accent-green-600">
-                                http://url/{{ session('shorted_url') }}
-                            </a>
+                            <p class="accent-green-600">
+                                 {{ Request::getHttpHost().'/'.session('shorted_url') }}
+                            </p>
                         </div>
                     @endif
 

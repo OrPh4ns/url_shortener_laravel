@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('orginal_url',1000);
             $table->string('shorted_url',500);
+            $table->foreignId('user_id')->nullable()->constrained()->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Short;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ShorterController extends Controller
@@ -45,6 +46,7 @@ class ShorterController extends Controller
         $shorts->orginal_url = $request->input()['url'];
         $random = Str::random(6);
         $shorts->shorted_url = $random;
+        $shorts->user_id = Auth::user()->id;
         $shorts->save();
         return redirect('short')->with(['success'=> 'Short added successfully!', 'shorted_url'=>$random]);
     }

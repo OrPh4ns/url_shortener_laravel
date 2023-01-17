@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShorterController;
+use App\Models\Short;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -27,4 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+Route::get('/{code}', function ($code){
+    $short = DB::table('shorts')->select('orginal_url')->where('shorted_url', $code)->get();
+    return redirect($short[0]->orginal_url);//redirect($short['shorted_url']);
+});
